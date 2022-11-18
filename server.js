@@ -4,8 +4,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-
-
 var serviceAccount = require('./supremetms-pushnotifications.json');// YOUR FIREBASE SERVICE ACCOUNT FILE
 
 webpush.setVapidDetails(
@@ -14,11 +12,11 @@ webpush.setVapidDetails(
   'N9nHKIKzBjOa9UYCPW8-wu-ZQjhrNEfYW32N8_hhvcc' // your private key
 );
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "1";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://console.firebase.google.com/u/0/project/supremetms-pushnotifications/database/supremetms-pushnotifications-default-rtdb/data/~2F' //your realtime database url
+  databaseURL: 'https://supremetms-pushnotifications-default-rtdb.firebaseio.com/' //your realtime database url
 });
 
 app.use(bodyParser.json());
